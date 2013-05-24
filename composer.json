@@ -7,7 +7,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/Appstrakt/FOSElasticaBundle.git"
+            "url": "git@github.com:Appstrakt/FOSElasticaBundle.git"
         }
     ],
     "license": "MIT",
