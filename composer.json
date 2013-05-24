@@ -1,9 +1,15 @@
 {
-    "name": "friendsofsymfony/elastica-bundle",
+    "name": "appstrakt/elastica-bundle",
     "type": "symfony-bundle",
     "description": "Elasticsearch PHP integration for your Symfony2 project using Elastica",
     "keywords": ["doctrine2", "elastica", "elasticsearch", "mongodb", "propel", "search"],
-    "homepage": "https://github.com/FriendsOfSymfony/FOSElasticaBundle",
+    "homepage": "https://github.com/Appstrakt/FOSElasticaBundle",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Appstrakt/FOSElasticaBundle.git"
+        }
+    ],
     "license": "MIT",
     "authors": [
         { "name": "Thibault Duplessis", "email": "thibault.duplessis@gmail.com" },
