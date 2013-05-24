@@ -5,6 +5,7 @@ namespace FOS\ElasticaBundle\Persister;
 use FOS\ElasticaBundle\Transformer\ModelToElasticaTransformerInterface;
 use Elastica\Type;
 use Elastica\Document;
+use Elastica\Exception\NotFoundException;
 
 /**
  * Inserts, replaces and deletes single documents in an elastica type
@@ -53,6 +54,25 @@ class ObjectPersister implements ObjectPersisterInterface
     }
 
     /**
+     * Replaces one object in the type, or add it if it doesn't exist
+     *
+     * @param object $object
+     * @return null
+     **/
+    public function replaceOrAddOne($object)
+    {
+        $document = $this->transformToElasticaDocument($object);
+
+        try {
+            $this->type->deleteById($document->getId());
+        }
+        catch (NotFoundException $e) {
+        }
+
+        $this->type->addDocument($document);
+    }
+
+    /**
      * Deletes one object in the type
      *
      * @param object $object
@@ -74,6 +94,22 @@ class ObjectPersister implements ObjectPersisterInterface
     public function deleteById($id)
     {
         $this->type->deleteById($id);
+    }
+
+    /**
+     * Deletes one object in the type by id if it exists
+     *
+     * @param mixed $id
+     *
+     * @return null
+     **/
+    public function deleteByIdIfExists($id)
+    {
+        try {
+            $this->type->deleteById($id);
+        }
+        catch (NotFoundException $e) {
+        }
     }
 
 

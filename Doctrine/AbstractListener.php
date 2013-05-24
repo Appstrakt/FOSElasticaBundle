@@ -151,7 +151,7 @@ abstract class AbstractListener implements EventSubscriber
     {
         $objectHash = spl_object_hash($object);
         if (isset($this->scheduledForRemoval[$objectHash])) {
-            $this->objectPersister->deleteById($this->scheduledForRemoval[$objectHash]);
+            $this->objectPersister->deleteByIdIfExists($this->scheduledForRemoval[$objectHash]);
             unset($this->scheduledForRemoval[$objectHash]);
         }
     }

@@ -22,7 +22,7 @@ class Listener extends AbstractListener
 
         if ($entity instanceof $this->objectClass) {
             if ($this->isObjectIndexable($entity)) {
-                $this->objectPersister->replaceOne($entity);
+                $this->objectPersister->replaceOrAddOne($entity);
             } else {
                 $this->scheduleForRemoval($entity, $eventArgs->getEntityManager());
                 $this->removeIfScheduled($entity);
